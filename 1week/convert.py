@@ -3,6 +3,9 @@
 '''
 
 import os
+from PIL import Image
+
+
 path = "c://a_Python//a_google_course//a_final_project//1week//images"
 dir_list = os.listdir(path)
 
