@@ -39,11 +39,21 @@ def get_list_dictionary(dir_list):
         list.append(dict)
     return list
 
+def publish(data_serial):
+    for each in data_serial:
+        print(each)
+        #response = requests.post("https://example.com/path/to/api", json=p)
+        #if not response.ok:
+        #     raise Exception("GET failed with status code {}".format(response.status_code))
 
 data_serial = get_list_dictionary(dir_list)
-print(data_serial)
+publish(data_serial)
+#print(data_serial)
+
 #print(dict)
 #print(list)
+
+
 '''
 for feedback in dir_list:
     print(feedback)
