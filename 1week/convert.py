@@ -6,7 +6,7 @@ import os
 from PIL import Image
 
 
-path = "c://a_Python//a_google_course//a_final_project//1week//images"
+path = "c://a_Python//a_google_course//a_final_project//1week//images//"
 dir_list = os.listdir(path)
 
 #print(dir_list)
@@ -14,7 +14,7 @@ dir_list = os.listdir(path)
 # to store files in a list
 list = []
 
- 
+
 ''' Requirement
 1. Iterate through each file in the folder
 
@@ -25,7 +25,11 @@ list = []
 '''
 for (root, dirs, file) in os.walk(path):
     for f in file:
-        
-        #print(f)
+        im = Image.open(root+f)
+        #print(f'{f}.jpeg is image')
+        new_im = im.rotate(90).resize((128,128))
+        rgb_im = new_im.convert("RGB")
+        rgb_im.save(os.path.splitext(root+f)[0]+".jpeg")
+        #print(root+f)
         #if '.tiff' in f:
             #print(f)
