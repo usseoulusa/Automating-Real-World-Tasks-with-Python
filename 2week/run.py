@@ -1,15 +1,15 @@
-'''
 #!/usr/bin/env python3
-'''
 
 
 import os
-#import requests
+import requests
 
-path = "c://a_Python//a_google_course//a_final_project//2week//feedback//"
+path = "/data/feedback/"
+
+#path = "c://a_Python//a_google_course//a_final_project//2week//feedback//"
 #save_path = "c://a_Python//a_google_course//a_final_project//2week//feedback//"
-dir_list = os.listdir(path)
 
+dir_list = os.listdir(path)
 #print(dir_list)
 
 # to store files in a list
@@ -40,16 +40,27 @@ def get_list_dictionary(dir_list):
     return list
 
 def publish(data_serial):
+    #response = requests.post("http://34.27.210.59/feedback", json=data_serial)
+
     for each in data_serial:
-        print(each)
-        #response = requests.post("https://example.com/path/to/api", json=p)
+        #print(each)
+        #response = requests.get('http://34.27.210.59')
+
+        #*****
+        # URL must end with a slash "http://34.27.210.59/feedback" error
+        # Found out by printing response.text and read through
+        response = requests.post("http://34.27.210.59/feedback/", json=each)
+        print(response.text)
         #if not response.ok:
-        #     raise Exception("GET failed with status code {}".format(response.status_code))
+        #    raise Exception("GET failed with status code {}".format(response.status_code))
+        #else:
+        #    print(response.status_code)
 
 data_serial = get_list_dictionary(dir_list)
 publish(data_serial)
-#print(data_serial)
 
+
+#print(data_serial)
 #print(dict)
 #print(list)
 
