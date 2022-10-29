@@ -1,15 +1,17 @@
-'''
-#!/usr/bin/env python
-'''
+
+#!/usr/bin/env python3
+
 
 import os
-import shutil
+#import shutil
 from PIL import Image
 
 
-path = "c://a_Python//a_google_course//a_final_project//1week//images//"
-save_path = "c://a_Python//a_google_course//a_final_project//1week//new_images//"
-dir_list = os.listdir(path)
+path = "/home/student-00-cc3d6b059d40/images/"
+# This must be /opt/icons/
+save_path = "/opt/icons/"
+
+#dir_list = os.listdir(path)
 
 #print(dir_list)
 
@@ -25,21 +27,24 @@ list = []
     b. Resize the image from 192x192 to 128x128
     c. Save the image to a new folder in .jpeg format
 '''
-
+'''
 for (root, dirs, file) in os.walk(path):
     for f in file:
         new_file = "{}.jpeg".format(f)
         shutil.copy(root+f, save_path+new_file)
+'''
 
-for (new_root, dirs, file) in os.walk(save_path):
+for (root, dirs, file) in os.walk(path):
     for f in file:
-        #im = Image.open(new_root+f)
+        #print(f)
+        im = Image.open(root+f)
         #print(f'{f}.jpeg is image')
         #cov_im = im.convert("RGB")
-        #im.rotate(270).resize((128, 128))
-        #rgb_im = new_im.convert("RGB")
-        #im.save(new_root+f)
-        print(new_root+f)
+        im.rotate(270).resize((128, 128)).convert('RGB').save(save_path+f+".jpeg")
+        #rgb_im = im.convert("RGB")
+        #im.save(path+f)
+        #print(new_root+f)
+        #print(root+f)
         #print(save_path)
         #if '.tiff' in f:
-            #print(f)
+        #print(f)
