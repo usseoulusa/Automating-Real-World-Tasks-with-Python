@@ -25,7 +25,10 @@ def process_data(data):
   Returns a list of lines that summarize the information.
   """
   max_revenue = {"revenue": 0}
+  # for # TODO: also handle max sales
   total_sales = {"total_sales": 0}
+  # for # TODO: also handle most popular car_year
+  sales_by_year = {}
 
 
   for item in data:
@@ -42,12 +45,35 @@ def process_data(data):
       item["max_sales"] = item["total_sales"]
       total_sales = item
     # TODO: also handle most popular car_year
+    # generate {"car_year", "total_sales"} dictionary
+    # and find max year and max sales
+    car_year = item["car"]["car_year"]
+    if item["car"]["car_year"] not in sales_by_year:
+      #sales_by_year["car_year"] = item["car"]["car_year"]
+      #sales_by_year["car_year"] = item["total_sales"]
+      #car_year = item["car"]["car_year"]
+      sales_by_year[car_year] = item["total_sales"]
+      #print(sales_by_year)
+    else:
+      value = item["total_sales"]
+      #print(value)
+      new_value = sales_by_year[car_year] + value
+      #print("sales by year:", sales_by_year[car_year], "new_value:",new_value)
+      #print("value:{} and new_value:{}".format(value, new_value))
+      sales_by_year[car_year] = new_value
+      #print(sales_by_year)
+    
+  #print(sales_by_year)
+  max_sales_year = (max(sales_by_year, key=sales_by_year.get))
+  max_sales_of_year = sales_by_year[max_sales_year]
+  #print(max_sales_year, max_sales_of_year)
 
   summary = [
     "The {} generated the most revenue: ${}".format(
       format_car(max_revenue["car"]), max_revenue["revenue"]),
       "The {} generated the most sales: {}".format(
-      format_car(total_sales["car"]), total_sales["max_sales"])
+      format_car(total_sales["car"]), total_sales["max_sales"]),
+      "The most popular year was {} with {} sales".format(max_sales_year, max_sales_of_year)
   ]
 
   return summary
