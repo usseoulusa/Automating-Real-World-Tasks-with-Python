@@ -99,7 +99,7 @@ def main(argv):
   # TODO: turn this into a PDF report
 
   report = "/tmp/cars.pdf"
-  #report = "c:\\temp\\report.pdf"
+  #report = "c:\\temp\\cars.pdf"
   report_title = "Sales summary for last month"
   #content = "\n".join(summary)
   content = "<br/>".join(summary)
@@ -116,7 +116,7 @@ def main(argv):
   body = "\n".join(summary)
   #Attachment: Attach the PDF path i.e. generated in the previous step
   attachment = "/tmp/cars.pdf"
-  #attachment = "c:\\temp\report.pdf"
+  #attachment = "c:\\temp\cars.pdf"
 
   # emails: def generate(sender, recipient, subject, body, attachment_path):
   message = emails.generate(sender, receiver, subject, body, attachment)
