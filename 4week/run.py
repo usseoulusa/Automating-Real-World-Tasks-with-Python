@@ -20,7 +20,21 @@ content = {}
 # to store each line in a list
 line_list = []
 # keywords for content dictionary
-keywords = ["title", "name", "date", "feedback"]
+keywords = ["name", "weight", "description", "image_name"]
+
+# Challenge
+# Description text has 3 lines: "name", "weight", description"
+# How to add fourth keyword "image_name"?
+# Proposal1: generate image list and add to dictionary for matching fruit
+# Proposal2: generate dictionary of description file and matching image
+
+images_list = ["001.jpeg", "002.jpeg", "003.jpeg", "004.jpeg", "005.jpeg",
+               "006.jpeg", "007.jpeg", "008.jpeg", "009.jpeg", "010.jpeg"]
+
+# Challenge
+# weight is in the form of "500 lbs"
+# "500 lbs" must be changed to integer "500"
+# Proposal: 1. drop lbs 2. int("string number")
 
 def get_dictionary(file):
     content = {}
@@ -28,9 +42,17 @@ def get_dictionary(file):
         i = 0
         for line in f:
             line = line.rstrip()
+            # Strip lbs and turn to integer
+            if line == 1:
+                line = ' '.join(line).split()
+                line = int(line)
             #line_list.append(line)
             content[keywords[i]] = line
             i += 1
+            # Add image_name
+            # How?
+            #if i == 3:
+            #    content[keywords[i]] = images_list[what here?]
     return content
 
 def get_list_dictionary(dir_list):
