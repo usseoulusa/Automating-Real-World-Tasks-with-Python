@@ -24,7 +24,8 @@ path = "C:/a_Python/a_google_course/a_final_project/4week/newimages/"
 images_list = os.listdir(path)
 print(images_list)
 
+
 for each in images_list:
-    #print(each)
-    #with open(each, 'rb') as opened:
-    #    r = requests.post(url, files={'file': opened})
+    print(each)
+    with open(each, 'rb') as opened:
+        r = requests.post(url, files={'file': opened})
