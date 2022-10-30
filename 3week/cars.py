@@ -5,7 +5,8 @@ import json
 import locale
 import sys
 import reports
-
+import emails
+import os
 
 def load_data(filename):
   """Loads the contents of filename as a JSON file."""
@@ -96,14 +97,30 @@ def main(argv):
   print(summary)
   
   # TODO: turn this into a PDF report
+
+  #report = "/tmp/cars.pdf"
   report = "c:\\temp\\report.pdf"
   report_title = "Sales summary for last month"
   #content = "\n".join(summary)
   content = "<br/>".join(summary)
   table = cars_dict_to_table(data)
+  
+  # reports: def generate(filename, title, additional_info, table_data):
   reports.generate(report, report_title, content, table)
 
   # TODO: send the PDF report as an email attachment
+  sender = "automation@example.com"
+  receiver = "{}@example.com".format(os.environ.get('USER'))
+  subject = "Sales summary for last month"
+  #body: The same summary from the PDF, but using \n between the lines
+  body = "\n".join(summary)
+  #Attachment: Attach the PDF path i.e. generated in the previous step
+  # attachment = "/tmp/cars.pdf"
+  attachment = "c:\\temp\report.pdf"
+
+  # emails: def generate(sender, recipient, subject, body, attachment_path):
+  message = emails.generate(sender, receiver, subject, body, attachment)
+  emails.send(message)
 
 
 if __name__ == "__main__":
