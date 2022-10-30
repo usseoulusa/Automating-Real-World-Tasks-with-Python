@@ -4,6 +4,7 @@
 import json
 import locale
 import sys
+import reports
 
 
 def load_data(filename):
@@ -71,10 +72,10 @@ def process_data(data):
   summary = [
     "The {} generated the most revenue: ${}".format(
       format_car(max_revenue["car"]), max_revenue["revenue"]),
-      "The {} generated the most sales: {}".format(
-      format_car(total_sales["car"]), total_sales["max_sales"]),
-      "The most popular year was {} with {} sales".format(max_sales_year, max_sales_of_year)
   ]
+
+  summary.append("The {} generated the most sales: {}".format(format_car(total_sales["car"]), total_sales["max_sales"]))
+  summary.append("The most popular year was {} with {} sales".format(max_sales_year, max_sales_of_year))
 
   return summary
 
@@ -95,6 +96,12 @@ def main(argv):
   print(summary)
   
   # TODO: turn this into a PDF report
+  report = "c:\\temp\\report.pdf"
+  report_title = "Sales summary for last month"
+  #content = "\n".join(summary)
+  content = "<br/>".join(summary)
+  table = cars_dict_to_table(data)
+  reports.generate(report, report_title, content, table)
 
   # TODO: send the PDF report as an email attachment
 
