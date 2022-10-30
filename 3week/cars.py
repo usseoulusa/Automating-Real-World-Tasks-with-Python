@@ -64,7 +64,7 @@ def process_data(data):
       #print("value:{} and new_value:{}".format(value, new_value))
       sales_by_year[car_year] = new_value
       #print(sales_by_year)
-    
+
   #print(sales_by_year)
   max_sales_year = (max(sales_by_year, key=sales_by_year.get))
   max_sales_of_year = sales_by_year[max_sales_year]
@@ -95,16 +95,16 @@ def main(argv):
   #print(data)
   summary = process_data(data)
   print(summary)
-  
+
   # TODO: turn this into a PDF report
 
-  #report = "/tmp/cars.pdf"
-  report = "c:\\temp\\report.pdf"
+  report = "/tmp/cars.pdf"
+  #report = "c:\\temp\\report.pdf"
   report_title = "Sales summary for last month"
   #content = "\n".join(summary)
   content = "<br/>".join(summary)
   table = cars_dict_to_table(data)
-  
+
   # reports: def generate(filename, title, additional_info, table_data):
   reports.generate(report, report_title, content, table)
 
@@ -115,13 +115,12 @@ def main(argv):
   #body: The same summary from the PDF, but using \n between the lines
   body = "\n".join(summary)
   #Attachment: Attach the PDF path i.e. generated in the previous step
-  # attachment = "/tmp/cars.pdf"
-  attachment = "c:\\temp\report.pdf"
+  attachment = "/tmp/cars.pdf"
+  #attachment = "c:\\temp\report.pdf"
 
   # emails: def generate(sender, recipient, subject, body, attachment_path):
   message = emails.generate(sender, receiver, subject, body, attachment)
   emails.send(message)
-
 
 if __name__ == "__main__":
   main(sys.argv)
