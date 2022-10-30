@@ -27,6 +27,12 @@ keywords = ["name", "weight", "description", "image_name"]
 # How to add fourth keyword "image_name"?
 # Proposal1: generate image list and add to dictionary for matching fruit
 # Proposal2: generate dictionary of description file and matching image
+#
+# Eureka! - Add keyword and value to the existing dictionary
+#content = {"name": "001.txt", "weight": 500, "description": "delicious"}
+#content["image_name"] = "001.jpeg"
+#print(content)
+#{"name": "001.txt", "weight": 500, "description": "delicious", "image_name": "001.jpeg"}
 
 images_list = ["001.jpeg", "002.jpeg", "003.jpeg", "004.jpeg", "005.jpeg",
                "006.jpeg", "007.jpeg", "008.jpeg", "009.jpeg", "010.jpeg"]

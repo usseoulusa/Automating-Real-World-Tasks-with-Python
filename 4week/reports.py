@@ -4,6 +4,19 @@
 
 # Requirement
 # A PDF with the name of the fruit and its total weight (in lbs).
+# No table
+# In the format
+'''
+name: Apple
+weight: 500 lbs
+
+[blank line]
+
+name: Avocado
+weight: 200 lbs
+
+[blank line]
+'''
 
 
 from reportlab.platypus import SimpleDocTemplate
