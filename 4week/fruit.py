@@ -10,7 +10,8 @@ import os
 
 
 data = [{'name':'mango', 'weight':500, 'description':'delicious', 'image_name':'010.jpeg'},
-        {'name':'apple', 'weight':100, 'description':'red', 'image_name':'001.jpeg'}]
+        {'name':'apple', 'weight':100, 'description':'red', 'image_name':'001.jpeg'},
+        {'name':'apple', 'weight':200, 'description':'green', 'image_name':'001.jpeg'}]
 
 
 def process_data(data):
@@ -18,7 +19,7 @@ def process_data(data):
     Returns a list of lines that summarize the information.
     """
     # TODO: total weight dictionary {'name': 'total_weight'}
-    total_weight = {"total_weight": 0}
+    total_weight = {}
     for item in data:
     # TODO: total_weight
 
@@ -31,10 +32,30 @@ def process_data(data):
         fruit = item["name"]
         if fruit not in total_weight:
             total_weight[fruit] = item["weight"]
-    return total_weight
+        else:
+            value = item["weight"]
+            #print(value)
+            new_value = total_weight[fruit] + value
+            #print("sales by year:", sales_by_year[car_year], "new_value:",new_value)
+            # #print("value:{} and new_value:{}".format(value, new_value))
+            total_weight[fruit] = new_value
+            #print(sales_by_year)
+    
+    summary = []
+    for fruit, total_weight in total_weight.items():
+        summary.append("name: {}".format(fruit))
+        summary.append("weight: {}".format(total_weight))
+        summary.append("")
 
+    #return total_weight
+    return summary
+
+newline = '\n'
 summary = process_data(data)
+#summary = list(''.join(l + 'x' * (n % 3 == 2) for n, l in enumerate(summary)))
+content = "\n".join(summary)
 print(summary)
+print(content)
 '''
     if item["car"]["car_year"] not in sales_by_year:
       #sales_by_year["car_year"] = item["car"]["car_year"]
