@@ -43,9 +43,11 @@ def get_dictionary(file):
         for line in f:
             line = line.rstrip()
             # Strip lbs and turn to integer
-            if line == 1:
-                line = ' '.join(line).split()
-                line = int(line)
+            if i == 1:
+                separated = ''.join(line).split()
+                string = separated[0]
+                now_num = int(string)
+                line = now_num
             #line_list.append(line)
             content[keywords[i]] = line
             i += 1
