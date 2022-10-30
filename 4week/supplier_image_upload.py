@@ -3,59 +3,28 @@
 '''
 
 import os
-import requests
+#import requests
 
-path = "/data/feedback/"
+# This example shows how a file can be uploaded using
+# The Python Requests module
 
-#path = "c://a_Python//a_google_course//a_final_project//2week//feedback//"
-#save_path = "c://a_Python//a_google_course//a_final_project//2week//feedback//"
+# from example_upload.py
+#url = "http://localhost/upload"
+#with open('/usr/share/apache2/icons/icon.sheet.png', 'rb') as opened:
+#    r = requests.post(url, files={'file': opened})
 
-dir_list = os.listdir(path)
-#print(dir_list)
+# Check by visiting the URL [linux-instance-IP-Address]/media/images/
+# Use the Python requests module to send the file contents
+# to the [linux-instance-IP-Address]/upload URL.
 
-# to store files in a list
-list = []
-# to store feedback content in a dictionary
-content = {}
-# to store each line in a list
-line_list = []
-# keywords for content dictionary
-keywords = ["title", "name", "date", "feedback"]
+url = "[linux-instance-IP-Address]/upload"
 
-def get_dictionary(file):
-    content = {}
-    with open(file) as f:
-        i = 0
-        for line in f:
-            line = line.rstrip()
-            #line_list.append(line)
-            content[keywords[i]] = line
-            i += 1
-    return content
+# Generate a list of image files
+path = "C:/a_Python/a_google_course/a_final_project/4week/newimages/"
+images_list = os.listdir(path)
+print(images_list)
 
-def get_list_dictionary(dir_list):
-    list = []
-    for feedback in dir_list:
-        dict = get_dictionary(feedback)
-        list.append(dict)
-    return list
-
-def publish(data_serial):
-    #response = requests.post("http://34.27.210.59/feedback", json=data_serial)
-
-    for each in data_serial:
-        #print(each)
-        #response = requests.get('http://34.27.210.59')
-
-        #*****
-        # URL must end with a slash "http://34.27.210.59/feedback" error
-        # Found out by printing response.text and read through
-        response = requests.post("http://34.27.210.59/feedback/", json=each)
-        print(response.text)
-        #if not response.ok:
-        #    raise Exception("GET failed with status code {}".format(response.status_code))
-        #else:
-        #    print(response.status_code)
-
-data_serial = get_list_dictionary(dir_list)
-publish(data_serial)
+for each in images_list:
+    #print(each)
+    #with open(each, 'rb') as opened:
+    #    r = requests.post(url, files={'file': opened})
