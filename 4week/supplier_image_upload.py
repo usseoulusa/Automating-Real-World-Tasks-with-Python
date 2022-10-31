@@ -17,6 +17,8 @@ import os
 # Use the Python requests module to send the file contents
 # to the [linux-instance-IP-Address]/upload URL.
 
+#url = "http://34.27.49.107/upload/"
+
 url = "[linux-instance-IP-Address]/upload"
 
 # Generate a list of image files

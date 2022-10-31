@@ -1,5 +1,5 @@
 '''
-#!/usb/bin/env python3
+#!/usr/bin/env python3
 '''
 
 import check_cpu_usage as cpu

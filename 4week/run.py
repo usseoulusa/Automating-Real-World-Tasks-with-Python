@@ -56,6 +56,12 @@ def get_dictionary(file):
                 line = now_num
             #line_list.append(line)
             content[keywords[i]] = line
+
+            # Final thought:
+            # Adding image_list did not work
+            # I ended up image file name for each item(txt file) at the end,
+            # so when I convert to dictionary, it picked up image_list file 
+            content["image_name"] = images_list[i]
             i += 1
             # Add image_name
             # How?
@@ -80,7 +86,7 @@ def publish(data_serial):
         #*****
         # URL must end with a slash "http://34.27.210.59/feedback" error
         # Found out by printing response.text and read through
-        response = requests.post("http://34.27.210.59/feedback/", json=each)
+        response = requests.post("http://34.27.49.107/feedback/", json=each)
         print(response.text)
         #if not response.ok:
         #    raise Exception("GET failed with status code {}".format(response.status_code))

@@ -1,9 +1,10 @@
 '''
-#!/usb/bin/env python3
+#!/usr/bin/env python3
 '''
 import psutil
 import shutil
-
+import emails
+import os
 
 ''' https://psutil.readthedocs.io/en/latest/#memory
 >>> import psutil
@@ -23,7 +24,15 @@ def check_memory_usage(threshold):
     mem = psutil.virtual_memory()
     giga = threshold / (1024 * 1024 * 1024)
     if mem.available <= threshold:
-        message = 'Error - Available memory is less than {}GB'.format(giga)
+        message = 'Error - Available memory is less than 500MB'
+        sender = "automation@example.com"
+        receiver = "{}@example.com".format(os.environ.get('USER'))
+        subject = message
+        #body: The same summary from the PDF, but using \n between the lines
+        body = "Please check your system and resolve the issue as soon as possible"
+    # emails: def generate(sender, recipient, subject, body, attachment_path):
+        message = emails.generate_error(sender, receiver, subject, body)
+        emails.send(message)
     else:
         message = 'Everything is OK'
 

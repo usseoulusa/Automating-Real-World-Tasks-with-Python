@@ -9,11 +9,13 @@ import emails
 import os
 from datetime import date
 
+
 def load_data(filename = None):
     data = [{'name':'mango', 'weight':500, 'description':'delicious', 'image_name':'010.jpeg'},
             {'name':'apple', 'weight':100, 'description':'red', 'image_name':'001.jpeg'},
             {'name':'apple', 'weight':200, 'description':'green', 'image_name':'001.jpeg'}]
     return data
+
 
 
 def process_data(data):
@@ -25,12 +27,9 @@ def process_data(data):
     for item in data:
     # TODO: total_weight
 
-    #if item["total_sales"] > total_sales["total_sales"]:
-    #  item["max_sales"] = item["total_sales"]
-    #  total_sales = item
-    # TODO: also handle most popular car_year
-    # generate {"car_year", "total_sales"} dictionary
-    # and find max year and max sales
+    # Final thought
+    # There was no total weight - no need to add up
+    # Each item has weight and no multiple items, so no need to add up
         fruit = item["name"]
         if fruit not in total_weight:
             total_weight[fruit] = item["weight"]
@@ -82,7 +81,7 @@ def main(argv = None):
   # reports: def generate(filename, title, additional_info, table_data):
   reports.generate(report, report_title, content)
 
-"""
+
   # TODO: send the PDF report as an email attachment
   sender = "automation@example.com"
   receiver = "{}@example.com".format(os.environ.get('USER'))
@@ -96,7 +95,7 @@ def main(argv = None):
   # emails: def generate(sender, recipient, subject, body, attachment_path):
   message = emails.generate(sender, receiver, subject, body, attachment)
   emails.send(message)
-"""
+
 
 if __name__ == "__main__":
   main(sys.argv)
